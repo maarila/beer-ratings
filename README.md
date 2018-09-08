@@ -1,24 +1,6 @@
-# README
+# beer-ratings
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A project for creating a web application using Ruby on Rails.
 
-Things you may want to cover:
+The deployed project can be found here: [Beer ratings](https://beer-ratings.herokuapp.com/breweries).
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
