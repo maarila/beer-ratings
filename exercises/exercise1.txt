@@ -1,0 +1,307 @@
+[7] pry(main)> Brewery.create name: "BrewDog", year: 2007
+   (0.0ms)  begin transaction
+  Brewery Create (0.3ms)  INSERT INTO "breweries" ("name", "year", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "BrewDog"], ["year", 2007], ["created_at", "2018-09-08 13:41:39.154386"], ["updated_at", "2018-09-08 13:41:39.154386"]]
+   (8.9ms)  commit transaction
+=> #<Brewery:0x00007f869fcf2e70
+ id: 5,
+ name: "BrewDog",
+ year: 2007,
+ created_at: Sat, 08 Sep 2018 13:41:39 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:41:39 UTC +00:00>
+[8] pry(main)> dog = Brewery.find_by name: "BrewDog"
+  Brewery Load (0.3ms)  SELECT  "breweries".* FROM "breweries" WHERE "breweries"."name" = ? LIMIT ?  [["name", "BrewDog"], ["LIMIT", 1]]
+=> #<Brewery:0x00007f86a0d02c98
+ id: 5,
+ name: "BrewDog",
+ year: 2007,
+ created_at: Sat, 08 Sep 2018 13:41:39 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:41:39 UTC +00:00>
+[9] pry(main)> dog.beer
+dog.beer_ids   dog.beer_ids=  dog.beers      dog.beers=     
+[9] pry(main)> dog.beers.
+Display all 10110 possibilities? (y or n)
+[9] pry(main)> dog.beers.cre
+dog.beers.create                          dog.beers.create_selector
+dog.beers.create!                         dog.beers.create_simple_logger
+dog.beers.create_aggregate                dog.beers.create_stdlib_logger
+dog.beers.create_aggregate_handler        dog.beers.create_string_join
+dog.beers.create_and                      dog.beers.create_style_rule
+dog.beers.create_beer                     dog.beers.create_table
+dog.beers.create_beer!                    dog.beers.create_table_alias
+dog.beers.create_body                     dog.beers.create_task
+dog.beers.create_brewery                  dog.beers.create_tempfile
+dog.beers.create_brewery!                 dog.beers.create_text_node
+dog.beers.create_cdata                    dog.beers.create_timezone
+dog.beers.create_command                  dog.beers.create_token
+dog.beers.create_comment                  dog.beers.create_true
+dog.beers.create_default_data_source      dog.beers.create_values
+dog.beers.create_element                  dog.beers.create_values_list
+dog.beers.create_entity                   dog.beers.create_with
+dog.beers.create_ext                      dog.beers.create_with!
+dog.beers.create_ext_from_array           dog.beers.create_with_value
+dog.beers.create_ext_from_hash            dog.beers.create_with_value=
+dog.beers.create_ext_from_string          dog.beers.created?
+dog.beers.create_extension                dog.beers.created_at
+dog.beers.create_external_subset          dog.beers.created_at=
+dog.beers.create_false                    dog.beers.created_at?
+dog.beers.create_file                     dog.beers.created_at_before_last_save
+dog.beers.create_function                 dog.beers.created_at_before_type_cast
+dog.beers.create_gem_version_promoter     dog.beers.created_at_came_from_user?
+dog.beers.create_id                       dog.beers.created_at_change
+dog.beers.create_id=                      dog.beers.created_at_change_to_be_saved
+dog.beers.create_insert                   dog.beers.created_at_changed?
+dog.beers.create_internal_subset          dog.beers.created_at_in_database
+dog.beers.create_join                     dog.beers.created_at_previous_change
+dog.beers.create_join_table               dog.beers.created_at_previously_changed?
+dog.beers.create_link                     dog.beers.created_at_was
+dog.beers.create_node                     dog.beers.created_at_will_change!
+dog.beers.create_on                       dog.beers.credentials
+dog.beers.create_reflection               dog.beers.credentials_for
+dog.beers.create_savepoint                dog.beers.credentials_path
+dog.beers.create_schema_dumper            dog.beers.credless_remotes
+[9] pry(main)> dog
+=> #<Brewery:0x00007f86a0d02c98
+ id: 5,
+ name: "BrewDog",
+ year: 2007,
+ created_at: Sat, 08 Sep 2018 13:41:39 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:41:39 UTC +00:00>
+[10] pry(main)> dog.beers.create name: "Punk IPA", style: "IPA"
+   (0.1ms)  begin transaction
+  Beer Create (0.4ms)  INSERT INTO "beers" ("name", "style", "brewery_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Punk IPA"], ["style", "IPA"], ["brewery_id", 5], ["created_at", "2018-09-08 13:43:58.142358"], ["updated_at", "2018-09-08 13:43:58.142358"]]
+   (0.9ms)  commit transaction
+=> #<Beer:0x00007f869ff9bcd0
+ id: 14,
+ name: "Punk IPA",
+ style: "IPA",
+ brewery_id: 5,
+ created_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00>
+[11] pry(main)> b = Beer.create name: "Nanny State", style: "low alcohol"
+   (0.1ms)  begin transaction
+   (0.1ms)  rollback transaction
+=> #<Beer:0x00007f86a5038828
+ id: nil,
+ name: "Nanny State",
+ style: "low alcohol",
+ brewery_id: nil,
+ created_at: nil,
+ updated_at: nil>
+[12] pry(main)> b.brewery = dog
+=> #<Brewery:0x00007f86a0d02c98
+ id: 5,
+ name: "BrewDog",
+ year: 2007,
+ created_at: Sat, 08 Sep 2018 13:41:39 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:41:39 UTC +00:00>
+[13] pry(main)> dog
+=> #<Brewery:0x00007f86a0d02c98
+ id: 5,
+ name: "BrewDog",
+ year: 2007,
+ created_at: Sat, 08 Sep 2018 13:41:39 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:41:39 UTC +00:00>
+[14] pry(main)> Beer.where brewery_id = 5
+ArgumentError: Unsupported argument type: 5 (Integer)
+from /Users/mixu/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/relation/where_clause_factory.rb:23:in `build'
+[15] pry(main)> Beer.where brewery_id: 5
+  Beer Load (0.3ms)  SELECT "beers".* FROM "beers" WHERE "beers"."brewery_id" = ?  [["brewery_id", 5]]
+=> [#<Beer:0x00007f86a50a36c8
+  id: 14,
+  name: "Punk IPA",
+  style: "IPA",
+  brewery_id: 5,
+  created_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00,
+  updated_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00>]
+[16] pry(main)> b.save
+   (0.1ms)  begin transaction
+  Beer Create (0.4ms)  INSERT INTO "beers" ("name", "style", "brewery_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Nanny State"], ["style", "low alcohol"], ["brewery_id", 5], ["created_at", "2018-09-08 13:45:16.889318"], ["updated_at", "2018-09-08 13:45:16.889318"]]
+   (8.4ms)  commit transaction
+=> true
+[17] pry(main)> Beer.where brewery_id: 5
+  Beer Load (0.2ms)  SELECT "beers".* FROM "beers" WHERE "beers"."brewery_id" = ?  [["brewery_id", 5]]
+=> [#<Beer:0x00007f86a50299e0
+  id: 14,
+  name: "Punk IPA",
+  style: "IPA",
+  brewery_id: 5,
+  created_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00,
+  updated_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00>,
+ #<Beer:0x00007f86a50298a0
+  id: 15,
+  name: "Nanny State",
+  style: "low alcohol",
+  brewery_id: 5,
+  created_at: Sat, 08 Sep 2018 13:45:16 UTC +00:00,
+  updated_at: Sat, 08 Sep 2018 13:45:16 UTC +00:00>]
+[18] pry(main)> punk = Beer.find_by name: "Punk IPA"
+  Beer Load (0.2ms)  SELECT  "beers".* FROM "beers" WHERE "beers"."name" = ? LIMIT ?  [["name", "Punk IPA"], ["LIMIT", 1]]
+=> #<Beer:0x00007f869ff69050
+ id: 14,
+ name: "Punk IPA",
+ style: "IPA",
+ brewery_id: 5,
+ created_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00>
+[19] pry(main)> nanny = Beer.where style: "IPA"
+  Beer Load (0.2ms)  SELECT "beers".* FROM "beers" WHERE "beers"."style" = ?  [["style", "IPA"]]
+=> [#<Beer:0x00007f869ff1b0d0
+  id: 14,
+  name: "Punk IPA",
+  style: "IPA",
+  brewery_id: 5,
+  created_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00,
+  updated_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00>]
+[20] pry(main)> nanny
+=> [#<Beer:0x00007f869ff1b0d0
+  id: 14,
+  name: "Punk IPA",
+  style: "IPA",
+  brewery_id: 5,
+  created_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00,
+  updated_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00>]
+[21] pry(main)> nanny.ratings.create score: 16
+NoMethodError: undefined method `ratings' for #<Beer::ActiveRecord_Relation:0x00007f869ff21bd8>
+from /Users/mixu/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activerecord-5.2.1/lib/active_record/relation/delegation.rb:95:in `method_missing'
+[22] pry(main)> nanny
+=> [#<Beer:0x00007f869ff1b0d0
+  id: 14,
+  name: "Punk IPA",
+  style: "IPA",
+  brewery_id: 5,
+  created_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00,
+  updated_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00>]
+[23] pry(main)> reload
+NameError: undefined local variable or method `reload' for main:Object
+Did you mean?  reload!
+               load
+from (pry):23:in `__pry__'
+[24] pry(main)> reload!
+Reloading...
+=> true
+[25] pry(main)> nanny
+=> [#<Beer:0x00007f869ff1b0d0
+  id: 14,
+  name: "Punk IPA",
+  style: "IPA",
+  brewery_id: 5,
+  created_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00,
+  updated_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00>]
+[26] pry(main)> b
+=> #<Beer:0x00007f86a5038828
+ id: 15,
+ name: "Nanny State",
+ style: "low alcohol",
+ brewery_id: 5,
+ created_at: Sat, 08 Sep 2018 13:45:16 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:45:16 UTC +00:00>
+[27] pry(main)> punk
+=> #<Beer:0x00007f869ff69050
+ id: 14,
+ name: "Punk IPA",
+ style: "IPA",
+ brewery_id: 5,
+ created_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00>
+[28] pry(main)> nanny
+=> [#<Beer:0x00007f869ff1b0d0
+  id: 14,
+  name: "Punk IPA",
+  style: "IPA",
+  brewery_id: 5,
+  created_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00,
+  updated_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00>]
+[29] pry(main)> punk
+=> #<Beer:0x00007f869ff69050
+ id: 14,
+ name: "Punk IPA",
+ style: "IPA",
+ brewery_id: 5,
+ created_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00>
+[30] pry(main)> nanny = Beer.find_by name: "Nanny State"
+  Beer Load (0.1ms)  SELECT  "beers".* FROM "beers" WHERE "beers"."name" = ? LIMIT ?  [["name", "Nanny State"], ["LIMIT", 1]]
+=> #<Beer:0x00007f86a0362d78
+ id: 15,
+ name: "Nanny State",
+ style: "low alcohol",
+ brewery_id: 5,
+ created_at: Sat, 08 Sep 2018 13:45:16 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:45:16 UTC +00:00>
+[31] pry(main)> punk
+=> #<Beer:0x00007f869ff69050
+ id: 14,
+ name: "Punk IPA",
+ style: "IPA",
+ brewery_id: 5,
+ created_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:43:58 UTC +00:00>
+[32] pry(main)> nanny
+=> #<Beer:0x00007f86a0362d78
+ id: 15,
+ name: "Nanny State",
+ style: "low alcohol",
+ brewery_id: 5,
+ created_at: Sat, 08 Sep 2018 13:45:16 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:45:16 UTC +00:00>
+[33] pry(main)> nanny.ratings.create score: 16
+   (0.1ms)  begin transaction
+  Rating Create (0.2ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 16], ["beer_id", 15], ["created_at", "2018-09-08 13:48:03.530778"], ["updated_at", "2018-09-08 13:48:03.530778"]]
+   (8.4ms)  commit transaction
+=> #<Rating:0x00007f86a0a14db0
+ id: 4,
+ score: 16,
+ beer_id: 15,
+ created_at: Sat, 08 Sep 2018 13:48:03 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:48:03 UTC +00:00>
+[34] pry(main)> nanny.ratings.create score: 9
+   (0.1ms)  begin transaction
+  Rating Create (0.4ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 9], ["beer_id", 15], ["created_at", "2018-09-08 13:48:28.307469"], ["updated_at", "2018-09-08 13:48:28.307469"]]
+   (7.8ms)  commit transaction
+=> #<Rating:0x00007f869fbc8040
+ id: 5,
+ score: 9,
+ beer_id: 15,
+ created_at: Sat, 08 Sep 2018 13:48:28 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:48:28 UTC +00:00>
+[35] pry(main)> nanny.ratings.create score: 19
+   (0.1ms)  begin transaction
+  Rating Create (0.4ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 19], ["beer_id", 15], ["created_at", "2018-09-08 13:48:35.059488"], ["updated_at", "2018-09-08 13:48:35.059488"]]
+   (8.6ms)  commit transaction
+=> #<Rating:0x00007f869facbef8
+ id: 6,
+ score: 19,
+ beer_id: 15,
+ created_at: Sat, 08 Sep 2018 13:48:35 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:48:35 UTC +00:00>
+[36] pry(main)> punk.ratings.create score: 11
+   (0.1ms)  begin transaction
+  Rating Create (0.4ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 11], ["beer_id", 14], ["created_at", "2018-09-08 13:48:40.859313"], ["updated_at", "2018-09-08 13:48:40.859313"]]
+   (8.6ms)  commit transaction
+=> #<Rating:0x00007f869f9a3058
+ id: 7,
+ score: 11,
+ beer_id: 14,
+ created_at: Sat, 08 Sep 2018 13:48:40 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:48:40 UTC +00:00>
+[37] pry(main)> punk.ratings.create score: 14
+   (0.1ms)  begin transaction
+  Rating Create (0.3ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 14], ["beer_id", 14], ["created_at", "2018-09-08 13:48:49.141652"], ["updated_at", "2018-09-08 13:48:49.141652"]]
+   (8.6ms)  commit transaction
+=> #<Rating:0x00007f86a1ecf110
+ id: 8,
+ score: 14,
+ beer_id: 14,
+ created_at: Sat, 08 Sep 2018 13:48:49 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:48:49 UTC +00:00>
+[38] pry(main)> punk.ratings.create score: 14
+   (0.1ms)  begin transaction
+  Rating Create (0.4ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 14], ["beer_id", 14], ["created_at", "2018-09-08 13:48:54.450563"], ["updated_at", "2018-09-08 13:48:54.450563"]]
+   (8.9ms)  commit transaction
+=> #<Rating:0x00007f86a5109770
+ id: 9,
+ score: 14,
+ beer_id: 14,
+ created_at: Sat, 08 Sep 2018 13:48:54 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 13:48:54 UTC +00:00>
+[39] pry(main)> 
