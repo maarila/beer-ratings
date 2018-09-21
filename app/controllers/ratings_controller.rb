@@ -19,4 +19,3 @@ class RatingsController < ApplicationController
     redirect_to ratings_path
   end
 end
-
