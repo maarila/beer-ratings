@@ -1,0 +1,10 @@
+<% if @user.new_record? %>
+  <h1>Editing User</h1>
+<% else %>
+  <h1>Change password for <%= @user.username %></h1>
+<% end %>
+
+<%= render 'form', user: @user %>
+
+<%= link_to 'Show', @user %> |
+<%= link_to 'Back', users_path %>
