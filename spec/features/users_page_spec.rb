@@ -42,6 +42,21 @@ describe "User page" do
   let!(:user2) { User.create username: 'Brian', password: 'Secret55', password_confirmation: 'Secret55' }
   let!(:rating4) { FactoryBot.create :rating, score: 1, user: user2 }
 
+  it "when ratings have been given, shows favorite style and brewery" do
+    visit user_path(user)
+
+    expect(page).to have_content 'Favourite beer style:'
+    expect(page).to have_content 'Favourite brewery:'
+  end
+
+  it "when no ratings have been given, does not show favorite style or brewery" do
+    user3 = User.create username: "Ounou", password: "Good1", password_confirmation: 'Good1'
+    visit user_path(user3)
+
+    expect(page).not_to have_content 'Favourite beer style:'
+    expect(page).not_to have_content 'Favourite brewery:'
+  end
+
   it "shows the ratings given by the user" do
     visit user_path(user)
 
@@ -50,7 +65,7 @@ describe "User page" do
     expect(page).to have_content 'anonymous --> 3'
   end
 
-  it "does not show ratings give by other users" do
+  it "does not show ratings given by other users" do
     visit user_path(user)
 
     expect(page).not_to have_content 'anonymous --> 1'
