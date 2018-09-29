@@ -56,6 +56,69 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "favorite style" do
+    let(:user) { FactoryBot.create(:user) }
+
+    it "has method for determining favorite style" do
+      expect(user).to respond_to(:favorite_style)
+    end
+
+    it "without ratings does not have one" do
+      expect(user.favorite_style).to eq(nil)
+    end
+
+    it "is the only rated if only one rating" do
+      beer = FactoryBot.create(:beer)
+      rating = FactoryBot.create(:rating, score: 20, beer: beer, user: user)
+
+      expect(user.favorite_style).to eq("lager")
+    end
+
+    it "is the one with the highest rating average if several rated" do
+      brewery = FactoryBot.create(:brewery)
+      beer1 = FactoryBot.create(:beer)
+      beer2 = FactoryBot.create(:beer)
+      beer3 = Beer.new name: "SuperBeer", style: "IPA", brewery: brewery
+      rating1 = FactoryBot.create(:rating, score: 20, beer: beer1, user: user)
+      rating2 = FactoryBot.create(:rating, score: 10, beer: beer2, user: user)
+      rating3 = FactoryBot.create(:rating, score: 50, beer: beer3, user: user)
+
+      expect(user.favorite_style).to eq("IPA")
+    end
+  end
+
+  describe "favorite brewery" do
+    let(:user) { FactoryBot.create(:user) }
+
+    it "has method for determining favorite brewery" do
+      expect(user).to respond_to(:favorite_brewery)
+    end
+
+    it "without ratings does not have one" do
+      expect(user.favorite_brewery).to eq(nil)
+    end
+
+    it "is the only rated if only one rating" do
+      beer = FactoryBot.create(:beer)
+      rating = FactoryBot.create(:rating, score: 20, beer: beer, user: user)
+
+      expect(user.favorite_brewery).to eq("anonymous")
+    end
+
+    it "is the one with the highest rating average if several rated" do
+      brewery = FactoryBot.create(:brewery)
+      super_brewery = Brewery.new name: "SuperBrewery", year: "1975"
+      beer1 = FactoryBot.create(:beer)
+      beer2 = FactoryBot.create(:beer)
+      beer3 = Beer.new name: "SuperBeer", style: "IPA", brewery: super_brewery
+      rating1 = FactoryBot.create(:rating, score: 20, beer: beer1, user: user)
+      rating2 = FactoryBot.create(:rating, score: 10, beer: beer2, user: user)
+      rating3 = FactoryBot.create(:rating, score: 50, beer: beer3, user: user)
+
+      expect(user.favorite_brewery).to eq("SuperBrewery")
+    end
+  end
+
   describe "with a proper password" do
     let(:user) { FactoryBot.create(:user) }
 

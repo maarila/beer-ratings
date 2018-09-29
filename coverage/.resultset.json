@@ -83,6 +83,22 @@
         null,
         2,
         null,
+        null,
+        1,
+        9,
+        null,
+        8,
+        17,
+        null,
+        null,
+        1,
+        9,
+        null,
+        8,
+        22,
+        8,
+        8,
+        null,
         null
       ],
       "/Users/mixu/code/beer-ratings/app/models/brewery.rb": [
@@ -97,7 +113,7 @@
         1,
         null,
         1,
-        33,
+        42,
         null,
         null,
         1,
@@ -140,9 +156,9 @@
         1,
         null,
         1,
-        95,
+        89,
         null,
-        63,
+        62,
         null,
         null,
         1,
@@ -626,6 +642,6 @@
         0
       ]
     },
-    "timestamp": 1538214452
+    "timestamp": 1538229895
   }
 }
