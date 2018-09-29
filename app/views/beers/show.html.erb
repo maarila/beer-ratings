@@ -20,8 +20,12 @@
     No ratings yet!
   <% else %>
     Has <%= pluralize(@beer.ratings.count, 'rating') %>, average <%= @beer.average_rating %>
-  <% end %>
+<% end %>
 </p>
 
-<%= link_to 'Edit', edit_beer_path(@beer) %> |
+<% if current_user %>
+  <%= link_to 'Edit', edit_beer_path(@beer) %> |
+  <%= link_to 'Destroy', @beer, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+<br><br>
 <%= link_to 'Back', beers_path %>
