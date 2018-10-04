@@ -1,0 +1,8 @@
+<div>
+  <% @place.each do |place| %>
+    <h2><%= place.name %></h2>
+    <p><em><%= place.status %></em></p>
+    <p><%= place.street %></p>
+    <p><%= place.zip %> <%= place.city %></p>
+  <% end %>
+</div>

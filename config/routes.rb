@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :memberships
   get 'signup', to: 'users#new'
   get 'places', to: 'places#index'
+  resources :places, only: [:index, :show]
   post 'places', to: 'places#search'
   resources :users
   resources :beers
