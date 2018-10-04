@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :memberships
+  delete 'memberships', to: 'memberships#destroy'
   get 'signup', to: 'users#new'
   get 'places', to: 'places#index'
   resources :places, only: [:index, :show]

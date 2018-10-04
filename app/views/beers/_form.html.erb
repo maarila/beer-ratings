@@ -19,12 +19,12 @@
 
     <div class="field">
       <%= form.label :style %>
-      <%= f.select :style, options_for_select(@styles) %>
+      <%= f.select :style, options_for_select(@styles, selected: @beer.style) %>
     </div>
 
     <div class="field">
       <%= form.label :brewery_id %>
-      <%= f.select :brewery_id, options_from_collection_for_select(@breweries, :id, :name) %>
+      <%= f.select :brewery_id, options_from_collection_for_select(@breweries, :id, :name, selected: @beer.brewery_id) %>
     </div>
     <%= f.submit %>
   <% end %>
