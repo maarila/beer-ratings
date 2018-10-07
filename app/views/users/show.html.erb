@@ -15,7 +15,7 @@
   <p>No ratings yet!</p>
 <% else %>
   <p>Has made <%= @user.ratings.count %> ratings, average rating <%= @user.average_rating %> </p>
-  <p>Favourite beer style: <%= @user.favorite_style %></p>
+  <p>Favourite beer style: <%= @user.favorite_style.name %></p>
   <p>Favourite brewery: <%= @user.favorite_brewery %></p>
 
   <h3>ratings</h3>
