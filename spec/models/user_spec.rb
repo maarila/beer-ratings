@@ -58,6 +58,7 @@ RSpec.describe User, type: :model do
 
   describe "favorite style" do
     let(:user) { FactoryBot.create(:user) }
+    let(:style) { FactoryBot.create(:style) }
 
     it "has method for determining favorite style" do
       expect(user).to respond_to(:favorite_style)
@@ -71,19 +72,20 @@ RSpec.describe User, type: :model do
       beer = FactoryBot.create(:beer)
       rating = FactoryBot.create(:rating, score: 20, beer: beer, user: user)
 
-      expect(user.favorite_style).to eq("lager")
+      expect(user.favorite_style.name).to eq("Lager")
     end
 
     it "is the one with the highest rating average if several rated" do
       brewery = FactoryBot.create(:brewery)
+      style1 = Style.new name: "IPA", description: "Fabulous!"
       beer1 = FactoryBot.create(:beer)
       beer2 = FactoryBot.create(:beer)
-      beer3 = Beer.new name: "SuperBeer", style: "IPA", brewery: brewery
+      beer3 = Beer.new name: "SuperBeer", style: style1, brewery: brewery
       rating1 = FactoryBot.create(:rating, score: 20, beer: beer1, user: user)
       rating2 = FactoryBot.create(:rating, score: 10, beer: beer2, user: user)
       rating3 = FactoryBot.create(:rating, score: 50, beer: beer3, user: user)
 
-      expect(user.favorite_style).to eq("IPA")
+      expect(user.favorite_style).to eq(style1)
     end
   end
 
@@ -108,9 +110,10 @@ RSpec.describe User, type: :model do
     it "is the one with the highest rating average if several rated" do
       brewery = FactoryBot.create(:brewery)
       super_brewery = Brewery.new name: "SuperBrewery", year: "1975"
+      style1 = Style.new name: "IPA", description: "Fabulous!"
       beer1 = FactoryBot.create(:beer)
       beer2 = FactoryBot.create(:beer)
-      beer3 = Beer.new name: "SuperBeer", style: "IPA", brewery: super_brewery
+      beer3 = Beer.new name: "SuperBeer", style: style1, brewery: super_brewery
       rating1 = FactoryBot.create(:rating, score: 20, beer: beer1, user: user)
       rating2 = FactoryBot.create(:rating, score: 10, beer: beer2, user: user)
       rating3 = FactoryBot.create(:rating, score: 50, beer: beer3, user: user)

@@ -24,8 +24,9 @@ class User < ApplicationRecord
   def favorite_style
     return nil if ratings.empty?
 
-    ratings = Rating.joins(:user).where(user_id: id).joins(:beer).group(:style).average(:score)
-    ratings.max_by { |_style, score| score }.first
+    ratings = Rating.joins(:user).where(user_id: id).joins(:beer).group(:style_id).average(:score)
+    style_id = ratings.max_by { |_style, score| score }.first
+    Style.find_by id: style_id
   end
 
   def favorite_brewery

@@ -4,6 +4,7 @@ include Helpers
 
 describe "Beer" do
   let!(:brewery) { FactoryBot.create :brewery, name: "Koff" }
+  let!(:style) { FactoryBot.create :style }
   let!(:user) { FactoryBot.create :user }
 
   before :each do
@@ -14,6 +15,7 @@ describe "Beer" do
     visit new_beer_path
     fill_in('beer_name', with: 'Test Beer')
     select('Koff', from: 'beer[brewery_id]')
+    select('Lager', from: 'beer[style_id]')
 
     expect{
       click_button('Create Beer')
