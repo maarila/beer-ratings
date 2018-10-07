@@ -8,6 +8,14 @@
 <% end %>
 
 <% if @places %>
+  <% if @weather.present? %>
+    <p><strong>Current beer weather in <%= params[:city].capitalize %></strong></p>
+    <p><%= @weather['current']['temp_c'] %> celsius</p>
+    <img src="<%= @weather['current']['condition']['icon'] %>" alt="<%= @weather['current']['condition']['text'] %>">
+    <p><strong>Wind </strong><%= (@weather['current']['wind_kph'] * 0.277778).round(1) %> m/sec, direction <%= @weather['current']['wind_dir'] %></p>
+    <br>
+  <% end %>
+  <p><strong>Places to get your beer:</strong></p>
   <table>
     <thead>
       <% Place.rendered_fields.each do |field| %>

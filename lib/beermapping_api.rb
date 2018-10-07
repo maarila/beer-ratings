@@ -29,4 +29,15 @@ class BeermappingApi
 
     ENV['BEERMAPPING_APIKEY']
   end
+
+  def self.weather_in(city)
+    url = "https://api.apixu.com/v1/current.json?key=#{weather_key}&q="
+    HTTParty.get "#{url}#{ERB::Util.url_encode(city)}"
+  end
+
+  def self.weather_key
+    raise "WEATHER_APIKEY env variable not defined" if ENV['WEATHER_APIKEY'].nil?
+
+    ENV['WEATHER_APIKEY']
+  end
 end
