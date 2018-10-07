@@ -555,6 +555,17 @@
         null,
         4,
         null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        0,
+        null,
         null
       ],
       "/Users/mixu/code/beer-ratings/app/models/place.rb": [
@@ -572,6 +583,8 @@
         null,
         null,
         1,
+        3,
+        3,
         3,
         3,
         3,
@@ -799,6 +812,6 @@
         0
       ]
     },
-    "timestamp": 1538917636
+    "timestamp": 1538925566
   }
 }

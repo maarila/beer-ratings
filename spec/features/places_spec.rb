@@ -5,6 +5,9 @@ describe "Places" do
     allow(BeermappingApi).to receive(:places_in).with("kumpula").and_return(
       [Place.new(name: "Oljenkorsi", id: 1)]
     )
+    allow(BeermappingApi).to receive(:weather_in).with("kumpula").and_return(
+      []
+    )
 
     visit places_path
     fill_in('city', with: 'kumpula')
@@ -16,6 +19,9 @@ describe "Places" do
   it "if several are returned by the API, they are all shown at the page" do
     allow(BeermappingApi).to receive(:places_in).with("kumpula").and_return(
       [Place.new(name: "Oljenkorsi", id: 1), Place.new(name: "Kaljalandia", id: 2), Place.new(name: "Ohrala", id: 3)]
+    )
+    allow(BeermappingApi).to receive(:weather_in).with("kumpula").and_return(
+      []
     )
 
     visit places_path
@@ -29,6 +35,9 @@ describe "Places" do
 
   it "if none are found, a notification is shown to the user" do
     allow(BeermappingApi).to receive(:places_in).with("kampusla").and_return(
+      []
+    )
+    allow(BeermappingApi).to receive(:weather_in).with("kampusla").and_return(
       []
     )
 
