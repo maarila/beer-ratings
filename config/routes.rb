@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :styles
   resources :memberships
   delete 'memberships', to: 'memberships#destroy'
   get 'signup', to: 'users#new'

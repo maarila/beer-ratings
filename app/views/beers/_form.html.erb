@@ -18,8 +18,8 @@
     </div>
 
     <div class="field">
-      <%= form.label :style %>
-      <%= f.select :style, options_for_select(@styles, selected: @beer.style) %>
+      <%= form.label :style_id %>
+      <%= f.select :style_id, options_from_collection_for_select(@styles, :id, :name, selected: @beer.style_id) %>
     </div>
 
     <div class="field">
