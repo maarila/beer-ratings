@@ -33,12 +33,12 @@ describe "Ratings page" do
   let!(:rating2) { FactoryBot.create :rating, score: 3, user: user }
   let!(:rating3) { FactoryBot.create :rating, score: 12, user: user }
 
-  it "shows given ratings and their total number" do
+  it "shows given ratings as averages and their total number" do
     visit ratings_path
 
-    expect(page).to have_content 'Number of ratings: 3'
-    expect(page).to have_content 'anonymous --> 20'
-    expect(page).to have_content 'anonymous --> 3'
-    expect(page).to have_content 'anonymous --> 12'
+    expect(page).to have_content 'Pekka 3'
+    expect(page).to have_content 'anonymous 20.0'
+    expect(page).to have_content 'anonymous 3.0'
+    expect(page).to have_content 'anonymous 12.0'
   end
 end
