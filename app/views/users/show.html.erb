@@ -12,7 +12,7 @@
 <% if @user.ratings.empty? %>
   <p>No ratings yet!</p>
 <% else %>
-  <p>Has made <%= @user.ratings.count %> ratings, average rating <%= @user.average_rating %> </p>
+  <p>Has made <%= @user.ratings.count %> ratings, average rating <%= round(@user.average_rating) %> </p>
   <p>Favourite beer style: <%= @user.favorite_style.name %></p>
   <p>Favourite brewery: <%= @user.favorite_brewery %></p>
 
@@ -30,7 +30,4 @@
   </ul>
 <% end %>
 
-<% if @user == current_user %>
-  <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary' %>
-  <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-<% end %>
+<%= edit_and_destroy_buttons(@user) %>

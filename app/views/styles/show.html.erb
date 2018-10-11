@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @style.name %>
@@ -22,9 +20,4 @@
   </ul>
 <% end %>
 
-<% if current_user %>
-  <%= link_to 'Edit', edit_style_path(@style), class:'btn btn-primary' %>
-  <%= link_to 'Destroy', @style, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger'%>
-  <br><br>
-  <%= link_to 'Back', styles_path %>
-<% end %>
+<%= edit_and_destroy_buttons(@style) %>

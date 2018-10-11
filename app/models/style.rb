@@ -3,7 +3,7 @@ class Style < ApplicationRecord
 
   def average_rating
     beer_averages = beers.map(&:average_rating).select(&:positive?)
-    (beer_averages.inject(:+).to_f / beer_averages.size).round(1)
+    beer_averages.inject(:+).to_f / beer_averages.size
   end
 
   def self.top(amount)
