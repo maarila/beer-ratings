@@ -37,4 +37,9 @@ class User < ApplicationRecord
     favorite = Brewery.find_by id: brewery_id
     favorite.name
   end
+
+  def self.active(amount)
+    sorted_by_number_of_ratings_in_desc_order = User.all.sort_by{ |b| -(b.ratings.count || 0) }
+    sorted_by_number_of_ratings_in_desc_order[0...amount]
+  end
 end

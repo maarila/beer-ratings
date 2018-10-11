@@ -1,0 +1,21 @@
+<table class="table table-striped table-hover table-sm">
+  <thead>
+    <tr>
+      <th></th>
+      <th>average</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% ranked.each do |item| %>
+      <% if item.average_rating > 0 %>
+        <tr>
+          <td><%= link_to item.name, item %></td>
+          <td><%= item.average_rating %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+
