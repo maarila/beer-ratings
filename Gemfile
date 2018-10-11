@@ -35,6 +35,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'httparty'
+gem 'bootstrap', '~> 4.1.3'
+gem 'jquery-rails'
 
 group :production do
   gem 'pg'

@@ -1,10 +1,8 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Beer places search</h1>
 
 <%= form_tag places_path do %>
   city <%= text_field_tag :city, params[:city] %>
-<%= submit_tag "Search" %>
+<%= submit_tag "Search", class: "btn btn-primary" %>
 <% end %>
 
 <% if @places %>
@@ -16,7 +14,7 @@
     <br>
   <% end %>
   <p><strong>Places to get your beer:</strong></p>
-  <table>
+  <table class="table table-bordered table-striped table-hover">
     <thead>
       <% Place.rendered_fields.each do |field| %>
         <th><%= field %></th>
