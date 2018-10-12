@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get 'places', to: 'places#index'
   resources :places, only: [:index, :show]
   post 'places', to: 'places#search'
-  resources :users
+  resources :users do
+    post 'toggle_closed', on: :member
+  end
   resources :beers
   resources :breweries do
     post 'toggle_activity', on: :member

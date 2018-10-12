@@ -25,6 +25,8 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.admin = false
+    @user.closed = false
 
     respond_to do |format|
       if @user.save
@@ -54,12 +56,22 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy if current_user == @user
-    session[:user_id] = nil
+    @user.destroy if current_user.admin
+    session[:user_id] = nil if current_user == @user
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def toggle_closed
+    return if !current_user.admin
+
+    user = User.find(params[:id])
+    user.update_attribute :closed, !user.closed
+
+    new_status = user.closed ? "closed" : "open"
+    redirect_to user, notice: "account status changed to #{new_status}"
   end
 
   private
