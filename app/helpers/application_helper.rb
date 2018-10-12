@@ -6,7 +6,7 @@ module ApplicationHelper
     del = link_to('Destroy', item, method: :delete,
                                    data: { confirm: 'Are you sure?' },
                                    class: "btn btn-danger")
-    raw("#{edit} #{del}")
+    current_user.admin ? raw("#{edit} #{del}") : edit.to_s
   end
 
   def round(number)

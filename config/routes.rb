@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   post 'places', to: 'places#search'
   resources :users
   resources :beers
-  resources :breweries
+  resources :breweries do
+    post 'toggle_activity', on: :member
+  end
   resources :beer_clubs
   root 'breweries#index'
   resources :ratings, only: [:index, :new, :create, :destroy]
