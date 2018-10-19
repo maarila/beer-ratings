@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     post 'toggle_closed', on: :member
   end
   resources :beers
+  get 'beerlist', to: 'beers#list'
+  get 'brewerylist', to: 'breweries#list'
   resources :breweries do
     post 'toggle_activity', on: :member
   end
