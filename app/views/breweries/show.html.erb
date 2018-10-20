@@ -1,33 +1,37 @@
-<h2>
-  <%= @brewery.name %>
-  <% if not @brewery.active %>
-    <span class="badge badge-info">retired</span>
-  <% end %>
-</h2>
+<% cache @brewery do %>
 
-<p>
-  <em>Established at <%= @brewery.year %></em>
-</p>
+  <h2>
+    <%= @brewery.name %>
+    <% if not @brewery.active %>
+      <span class="badge badge-info">retired</span>
+    <% end %>
+  </h2>
 
-<p>
-  Number of beers
-  <%= @brewery.beers.count %>
-</p>
-
-<p>
-  <% @brewery.beers.each do |beer| %>
-    <%= link_to beer.name, beer %>
-  <% end %>
-</p>
-
-<% if @brewery.ratings.empty? %>
   <p>
-    No ratings yet!
+    <em>Established at <%= @brewery.year %></em>
   </p>
-<% else %>
+
   <p>
-    Has <%= @brewery.ratings.count %> ratings, average <%= round(@brewery.average_rating) %>
-</p>
+    Number of beers
+    <%= @brewery.beers.count %>
+  </p>
+
+  <p>
+    <% @brewery.beers.each do |beer| %>
+      <%= link_to beer.name, beer %>
+    <% end %>
+  </p>
+
+  <% if @brewery.ratings.empty? %>
+    <p>
+      No ratings yet!
+    </p>
+  <% else %>
+    <p>
+      Has <%= @brewery.ratings.count %> ratings, average <%= round(@brewery.average_rating) %>
+  </p>
+  <% end %>
+
 <% end %>
 
 <%= link_to "change activity", toggle_activity_brewery_path(@brewery.id), method: :post, class: "btn btn-primary" %>
