@@ -1,5 +1,6 @@
 class Beer < ApplicationRecord
   include RatingAverage
+  extend Top
 
   validates :name, presence: true
 
@@ -16,10 +17,5 @@ class Beer < ApplicationRecord
 
   def to_s
     "#{name}, #{brewery.name}"
-  end
-
-  def self.top(amount)
-    sorted_by_rating_in_desc_order = Beer.all.sort_by{ |b| -(b.average_rating || 0) }
-    sorted_by_rating_in_desc_order[0...amount]
   end
 end
